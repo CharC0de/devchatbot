@@ -15,8 +15,6 @@ class ChatroomApp:
     def __init__(self, master):
         self.master = master
         master.title("AI Chatroom")
-
-        # Create the chat display area
         self.chat_display = scrolledtext.ScrolledText(
             master, state='disabled', wrap='word')
         self.chat_display.pack(expand=True, fill='both')
@@ -25,13 +23,9 @@ class ChatroomApp:
         self.entry_field = tk.Entry(master)
         self.entry_field.pack(fill='x')
         self.entry_field.bind("<Return>", self.send_message)
-
-        # Create a button to send messages
         self.send_button = tk.Button(
             master, text="Send", command=self.send_message)
         self.send_button.pack()
-
-        # Initialize an empty list to store messages
         self.messages = []
 
     def process_message(self, message):
@@ -63,8 +57,6 @@ class ChatroomApp:
             self.display_messages()
             self.entry_field.delete(0, 'end')
             self.chat_display.config(state='disabled')
-
-            # Delay AI reply to render user's message first
             self.master.after(1000, self.ai_reply, message)
 
     def display_messages(self):
